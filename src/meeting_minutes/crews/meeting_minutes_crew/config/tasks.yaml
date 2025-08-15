@@ -1,0 +1,31 @@
+meeting_minutes_summary_task:
+  description: >
+    You MUST use the FileWriterTool exactly 3 times to create these files:
+
+    1. Call FileWriterTool with filename="summary.txt", directory="meeting_minutes", content="[Write a comprehensive summary of the meeting transcript: {transcript}]"
+    2. Call FileWriterTool with filename="action_items.txt", directory="meeting_minutes", content="[Extract action items in this format: - Action item 1\n- Action item 2\n...]"  
+    3. Call FileWriterTool with filename="sentiment.txt", directory="meeting_minutes", content="[Analyze the sentiment of the meeting]"
+
+    You MUST call the FileWriterTool for each file. Do not just provide the content - actively use the tool to create the files.
+
+  expected_output: >
+    Confirmation that all three files (summary.txt, action_items.txt, sentiment.txt) have been successfully created in the meeting_minutes directory.
+
+  agent: meeting_minutes_summarizer
+
+meeting_minutes_write_task:
+  description: >
+    Write the meeting minutes based on the summary, action items and sentiment. This should give everything needed to know based on summary, action items, and sentiment.
+    Put them into a nice markdown document.
+
+    - Use Today's Date for the meeting date
+    - Use the company name TylerAI for the company name
+    - Use Tyler for the name of the organizer
+    - Create a list of attendees from the transcript (make up some if needed)
+    - The location was on Zoom
+
+    Write the result to a file called "minutes.md" in the "meeting_minutes" directory. This is provided by the tool.
+
+  expected_output: >
+    A markdown file containing the meeting minutes with date, company name, organizer, attendees, location, summary, action items, and sentiment.
+  agent: meeting_minutes_writer

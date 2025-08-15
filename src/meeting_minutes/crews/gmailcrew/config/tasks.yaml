@@ -1,0 +1,30 @@
+gmail_draft_task:
+  description: >
+    Create a professional Gmail draft email containing the meeting minutes provided in {body}.
+
+    STEP 1: Format the meeting minutes into a professional email structure:
+    - Professional subject line: "Meeting Minutes - TylerAI Q2 2023 Earnings Review & Strategic Planning - [Current Date]"
+    - Professional greeting addressing the recipients
+    - Executive summary of key points
+    - Detailed meeting content from {body}
+    - Clear action items section
+    - Professional closing
+
+    STEP 2: Use the Gmail Draft Creator tool with the formatted content to create the actual Gmail draft.
+
+    IMPORTANT: You must call the Gmail Draft Creator tool to create the draft. The tool expects:
+    - body: The complete formatted email content as a string
+
+    The email content should include:
+    - All financial highlights and performance metrics
+    - Growth and performance updates
+    - Risk management information
+    - Future forecasts and plans
+    - Complete action items with owners and deadlines
+    - Sentiment analysis summary
+
+  expected_output: >
+    Gmail draft successfully created with confirmation message containing Draft ID. 
+    The draft should contain all meeting minutes in a professional email format.
+
+  agent: gmail_draft_agent
