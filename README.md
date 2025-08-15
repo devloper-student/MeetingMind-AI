@@ -1,56 +1,106 @@
-# {{crew_name}} Crew
+# MeetingMind-AI
 
-Welcome to the {{crew_name}} Crew project, powered by [crewAI](https://crewai.com). This template is designed to help you set up a multi-agent AI system with ease, leveraging the powerful and flexible framework provided by crewAI. Our goal is to enable your agents to collaborate effectively on complex tasks, maximizing their collective intelligence and capabilities.
+## Project Overview
 
-## Installation
+MeetingMind-AI is a cutting-edge AI-powered system designed to automate capturing, summarizing, and communicating business meeting insights with efficiency and professionalism. From raw audio recordings, the system delivers accurate transcriptions, extracts critical meeting highlights, sentiments, and action items, then seamlessly communicates outcomes via email.
 
-Ensure you have Python >=3.10 <3.14 installed on your system. This project uses [UV](https://docs.astral.sh/uv/) for dependency management and package handling, offering a seamless setup and execution experience.
+---
 
-First, if you haven't already, install uv:
+## Key Features
+
+- **Automated Audio Transcription:** Converts meeting audio files into accurate text using advanced speech recognition models like Mistral AI.
+- **AI-Powered Summarization:** Distills lengthy discussions into concise, actionable meeting minutes including key financial highlights and growth strategies.
+- **Sentiment Analysis:** Evaluates tone and sentiment to provide context to meeting outcomes.
+- **Persistent Knowledge Output:** Generates detailed markdown files documenting summaries, action points, and sentiments.
+- **Direct Gmail Integration:** Automatically sends professional emails with meeting minutes to stakeholders.
+- **Robust Error Handling:** Handles API limits and encoding issues gracefully.
+
+---
+
+## Technology Stack
+
+- Python 3.8+
+- CrewAI Framework
+- Mistral AI (Speech-to-Text; Language Models)
+- Gmail API
+- Pydantic (Data Validation and Schemas)
+- Pydub (Audio Processing)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.8+ installed
+- Mistral AI API key
+- Google API credentials for Gmail access
+
+### Installation
 
 ```bash
-pip install uv
+git clone https://github.com/devloper-student/MeetingMind-AI.git
+cd MeetingMind-AI
+pip install -r requirements.txt
 ```
 
-Next, navigate to your project directory and install the dependencies:
+### Configuration
 
-(Optional) Lock the dependencies and install them by using the CLI command:
-```bash
-crewai install
+Create a `.env` file and add the following:
+
+```
+MISTRAL_API_KEY=your_mistral_api_key_here
 ```
 
-### Customizing
+Place your meeting audio file as `EarningsCall.wav` in the project root directory.
 
-**Add your `OPENAI_API_KEY` into the `.env` file**
+### Usage
 
-- Modify `src/meeting_minutes/config/agents.yaml` to define your agents
-- Modify `src/meeting_minutes/config/tasks.yaml` to define your tasks
-- Modify `src/meeting_minutes/crew.py` to add your own logic, tools and specific args
-- Modify `src/meeting_minutes/main.py` to add custom inputs for your agents and tasks
-
-## Running the Project
-
-To kickstart your flow and begin execution, run this from the root folder of your project:
+Run the main program:
 
 ```bash
-crewai run
+python src/main.py
 ```
 
-This command initializes the meeting_minutes Flow as defined in your configuration.
+The system will generate transcripts, create summaries, write markdown meeting minutes files, and send emails to your configured recipients.
 
-This example, unmodified, will run the create a `report.md` file with the output of a research on LLMs in the root folder.
+---
 
-## Understanding Your Crew
+## System Architecture
 
-The meeting_minutes Crew is composed of multiple AI agents, each with unique roles, goals, and tools. These agents collaborate on a series of tasks, defined in `config/tasks.yaml`, leveraging their collective skills to achieve complex objectives. The `config/agents.yaml` file outlines the capabilities and configurations of each agent in your crew.
+```
+Audio Input 1 Transcription 1 AI Analysis 1 Document Generation 1 Email Delivery
+     1              1             1              1                1
+  Pydub         Mistral AI    CrewAI Agents   File Output      Gmail API
+```
 
-## Support
+---
 
-For support, questions, or feedback regarding the {{crew_name}} Crew or crewAI.
+## Demo
 
-- Visit our [documentation](https://docs.crewai.com)
-- Reach out to us through our [GitHub repository](https://github.com/joaomdmoura/crewai)
-- [Join our Discord](https://discord.com/invite/X4JWnZnxPb)
-- [Chat with our docs](https://chatg.pt/DWjSBZn)
+### Sample Output
 
-Let's create wonders together with the power and simplicity of crewAI.
+- **Input**: `EarningsCall.wav` (30-minute meeting recording)
+- **Generated Files**:
+  - `meeting_minutes/summary.txt`
+  - `meeting_minutes/action_items.txt` 
+  - `meeting_minutes/sentiment.txt`
+- **Email**: Professional meeting minutes sent to stakeholders
+
+### Performance
+
+- Transcription: ~2x audio length processing time
+- Summarization: <30 seconds for typical meeting
+- Email delivery: Real-time
+
+---
+
+## Contributing
+
+Contributions, bug reports, and feature requests are warmly welcome! Feel free to open issues or submit pull requests.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
